@@ -105,39 +105,43 @@ export const Registration = () => {
         </h5>
         <h3 className="text-gray-600 mb-6">Contact Details</h3>
         <InputField
-          label="Email address"
           type="email"
           value={email}
           onChange={setEmail}
           error={errors.email}
+          placeholder="Enter your email address"
         />
         <InputField
-          label="Mobile Number"
           type="tel"
           value={phoneNumber}
           onChange={setPhoneNumber}
           error={errors.phone}
+          placeholder="Mobile Number"
         />
         <h3 className="text-gray-600 mb-6">Set a password</h3>
         <PasswordField
-          label="Create a password"
           value={password}
           onChange={setPassword}
           error={errors.password}
+          placeholder="Create a Password"
         />
         <PasswordField
-          label="Confirm your password"
           value={confirmPassword}
           onChange={setConfirmPassword}
           error={errors.confirmPassword}
+          placeholder="Confirm your password"
         />
         <p className="text-sm text-gray-500 mb-4">
           We need a password to keep your information safe. But don't worry,
           we'll also sent your costume RentlyPass URL via email.
         </p>
-        <button type="submit" className="button">
-          Create Your Account
-        </button>
+        <div className="buttondiv">
+          {" "}
+          <button type="submit" className="button">
+            Create Your Account
+          </button>
+        </div>
+
         <p className="text-sm text-gray-500 mt-4">
           By clicking 'Create your account' You are agreeing to our{" "}
           <span>Terms & Conditions</span> and <span>Privacy Policy.</span>

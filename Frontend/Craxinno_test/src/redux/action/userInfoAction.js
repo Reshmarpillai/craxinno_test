@@ -6,7 +6,15 @@ export const saveUserInfo = (data, id) => async (dispatch) => {
       `${import.meta.env.VITE_API_URL}api/userinfo/save/${id}`,
       data
     );
-    dispatch({ type: "SAVE_USER_INFO", payload: response.data });
+
+    // Link generating after successful save
+    const nextForm = "/userinfoview";
+    const savedLink = `/users/${id}/view${nextForm}`;
+
+    dispatch({
+      type: "SAVE_USER_INFO",
+      payload: { data: response.data, link: savedLink },
+    });
   } catch (error) {
     console.error(error);
   }
@@ -18,7 +26,15 @@ export const saveFincialInfo = (data, id) => async (dispatch) => {
       `${import.meta.env.VITE_API_URL}api/financialinfo/save/${id}`,
       data
     );
-    dispatch({ type: "SAVE_FINANCIAL_INFO", payload: response.data });
+
+    // Link generating after successful save
+    const nextForm = "/financialinfoview";
+    const savedLink = `/users/${id}/view${nextForm}`;
+
+    dispatch({
+      type: "SAVE_FINANCIAL_INFO",
+      payload: { data: response.data, link: savedLink },
+    });
   } catch (error) {
     console.error(error);
   }

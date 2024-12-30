@@ -3,11 +3,11 @@ const User = require("../models/user");
 
 const saveUserInfo = async (req, res) => {
   try {
-    const { name, dateOfBirth, address, livingStatus, aboutYou } = req.body;
+    const { title, name, dateOfBirth, address, livingStatus, aboutYou } = req.body;
     const { id } = req.params;
     const result = await User.findOneAndUpdate(
       { _id: id },
-      { userInfo: { name, dateOfBirth, address, livingStatus, aboutYou } }
+      { userInfo: {title, name, dateOfBirth, address, livingStatus, aboutYou } }
     );
 
     // Send a successful response

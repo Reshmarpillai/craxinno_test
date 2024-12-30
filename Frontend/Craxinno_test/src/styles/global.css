@@ -10,13 +10,42 @@ body {
   height: 100vh;
   margin: 0;
 }
-h1,h3,
+h1,
+h3,
 p {
   color: black;
 }
+.input {
+  @apply bg-white border-2 border-blue-500 p-2 rounded-md;
+}
 .primary-heading {
-  @apply text-3xl font-bold text-gray-600;
+  @apply text-3xl font-bold text-gray-600 text-center;
+}
+.sub-heading {
+  @apply text-gray-500 text-center;
 }
 .button {
   @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+}
+.buttondiv {
+  @apply flex justify-center space-x-4;
+}
+/* Global styles for form fields */
+.form-field {
+  @apply block w-full px-4 py-2 mt-2 mb-4 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+/* Error state for form fields */
+.form-field-error {
+  @apply border-red-500 text-red-500;
+}
+
+/* Label styling */
+.form-label {
+  @apply block text-sm font-semibold text-gray-700 mb-2;
+}
+
+/* Error message styling */
+.form-error-message {
+  @apply text-xs text-red-500 italic mt-1;
 }

@@ -1,10 +1,12 @@
 import React from "react";
 import { InputField } from "../components/InputField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { savePersonalData } from "../redux/action/formAction";
 import { useState } from "react";
 import { saveUserInfo } from "../redux/action/userInfoAction";
+import { UserInfoView } from "../components/UserInfoView";
+import { Routes, Route } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const UserInfo = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +19,7 @@ export const UserInfo = () => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userInfoLink = useSelector((state) => state.userInfo.userInfoLink);
 
   const handleChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
@@ -25,14 +28,16 @@ export const UserInfo = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userid = localStorage.getItem("userid");
-    dispatch(saveUserInfo(formData, userid));
+    dispatch(saveUserInfo(formData, userid, "/userInfo"));
+    toast.success("Your personal information has been saved successfully!");
+
     navigate("/personalinfo/financial");
   };
 
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
-        <h1 className="form-title">Personal Information</h1>
+        <h1 className="primary-heading">Personal Information</h1>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <select
             name="title"
@@ -45,43 +50,53 @@ export const UserInfo = () => {
             <option value="miss">Miss</option>
           </select>
           <InputField
-            label="Name"
             name="name"
             value={formData.name}
             onChange={(value) => handleChange("name", value)}
+            placeholder="Full Name as per your passport"
           />
         </div>
         <InputField
-          label="Date of Birth"
           name="dateOfBirth"
           value={formData.dateOfBirth}
           onChange={(value) => handleChange("dateOfBirth", value)}
+          placeholder="Date of Birth"
         />
         <InputField
-          label="Address"
           name="address"
           value={formData.address}
           onChange={(value) => handleChange("address", value)}
+          placeholder="Current Address"
         />
         <InputField
-          label="Living Status"
           name="livingStatus"
           value={formData.livingStatus}
           onChange={(value) => handleChange("livingStatus", value)}
+          placeholder="How long have you lived at this address"
         />
         <InputField
-          label="About Yourself"
           name="aboutYou"
           value={formData.aboutYou}
           onChange={(value) => handleChange("aboutYou", value)}
+          placeholder="Tell us a bit about yourself(What are you like as a person,do you have any hobbies etc)"
         />
         <p className="info-text">
           All information can be edited once you create your account.
         </p>
-        <button type="submit" className="button">
-          Save and Continue
-        </button>
+        <div className="buttondiv">
+          <button type="submit" className="button">
+            Save and Continue
+          </button>
+        </div>
       </form>
+      {userInfoLink && (
+        <div>
+          <a href={userInfoLink} target="_blank" rel="noopener noreferrer">
+            View personal Information
+          </a>
+        </div>
+      )}
+
     </div>
   );
 };

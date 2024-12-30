@@ -8,13 +8,15 @@ require("dotenv").config();
 const registrationRoutes = require("./routes/registrationApi");
 const userInfoRoutes = require("./routes/userInforoute");
 const financialInfoRoutes = require("./routes/financialInforoute");
+const viewFinancialInfoRoutes = require("./routes/viewfinancialInforoute");
+const viewUserInfo = require("./routes/viewuserinforoute");
 
 // Initialize app
 const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "*", credentials: true }));
 
 // Connect to MongoDB
 mongoose
@@ -26,6 +28,7 @@ mongoose
 app.use("/api/userinfo", userInfoRoutes);
 app.use("/api/financialinfo", financialInfoRoutes);
 app.use("/api", registrationRoutes);
+app.use("/api/view", viewFinancialInfoRoutes);
 
 //global error handling middleware
 

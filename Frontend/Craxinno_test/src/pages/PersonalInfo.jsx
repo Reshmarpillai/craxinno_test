@@ -1,10 +1,22 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { UserInfo } from "./UserInfo";
 import { FinancialInfo } from "./FinancialInfo";
+import { useState } from "react";
 
 export const PersonalInfo = () => {
-  console.log("PersonalInfo component rendered");
+  const [round, setRound] = useState(1);
+  const navigate = useNavigate();
+
+  const handleRoundClick = (step) => {
+    setRound(step);
+    if (step === 1) {
+      navigate("/personalInfo");
+    } else {
+      navigate("/personalinfo/financial");
+    }
+  };
+
   return (
     <div>
       <div
@@ -17,34 +29,38 @@ export const PersonalInfo = () => {
       >
         {/* Circle 1 */}
         <div
+          onClick={() => handleRoundClick(1)}
           style={{
             width: "40px",
             height: "40px",
-            backgroundColor: "#007bff",
-            color: "white",
+            backgroundColor: round === 1 ? "#007bff" : "#ccc",
+            color: round === 1 ? "white" : "black",
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             fontSize: "18px",
             fontWeight: "bold",
+            cursor: "pointer",
           }}
         >
           1
         </div>
         {/* Circle 2 */}
         <div
+          onClick={() => handleRoundClick(2)}
           style={{
             width: "40px",
             height: "40px",
-            backgroundColor: "#ccc",
-            color: "black",
+            backgroundColor: round === 2 ? "#007bff" : "#ccc",
+            color: round === 2 ? "white" : "black",
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             fontSize: "18px",
             fontWeight: "bold",
+            cursor: "pointer",
           }}
         >
           2
@@ -53,7 +69,7 @@ export const PersonalInfo = () => {
 
       <Routes>
         <Route path="/*" element={<UserInfo />} />
-        <Route path="/financial" element={<FinancialInfo />} />
+        <Route path="/financial/*" element={<FinancialInfo />} />
       </Routes>
     </div>
   );
