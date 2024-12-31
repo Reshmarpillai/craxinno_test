@@ -31,10 +31,10 @@ export const FinancialInfo = ({ userId, nextForm, type }) => {
     navigate(`/home/${userid}`);
   };
   return (
-    <div>
+    <div className="flex flex-col space-y-4 max-w-lg mx-auto">
       <form onSubmit={handleSubmit}>
         <h1 className="primary-heading">Financial Information</h1>
-        <h3>All Your Information is Stored Securely</h3>
+        <h5 className="sub-heading">All Your Information is Stored Securely</h5>
         <Dropdownmenu
           name="employmentStatus"
           value={formData.employmentStatus}

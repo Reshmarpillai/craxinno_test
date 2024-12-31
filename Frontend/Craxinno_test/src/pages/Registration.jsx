@@ -70,14 +70,14 @@ export const Registration = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/registration",
+        `${import.meta.env.VITE_API_URL}api/registration`,
         {
           email,
           phoneNumber,
           password,
         }
       );
-      console.log("API Endpoint:", "http://localhost:5000/api/registration");
+
       const data = await response.data;
       if (response.status === 200 || response.status === 201) {
         localStorage.setItem("token", data.token);
@@ -100,10 +100,10 @@ export const Registration = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <h1 className="primary-heading">Create Your Account</h1>
-        <h5 className="text-gray-600 mb-6">
+        <h5 className="sub-heading">
           Set up your RentlyPass in as little as 2 minutes
         </h5>
-        <h3 className="text-gray-600 mb-6">Contact Details</h3>
+        <h3 className="sub-topic">Contact Details</h3>
         <InputField
           type="email"
           value={email}
@@ -118,7 +118,7 @@ export const Registration = () => {
           error={errors.phone}
           placeholder="Mobile Number"
         />
-        <h3 className="text-gray-600 mb-6">Set a password</h3>
+        <h3 className="sub-topic">Set a password</h3>
         <PasswordField
           value={password}
           onChange={setPassword}

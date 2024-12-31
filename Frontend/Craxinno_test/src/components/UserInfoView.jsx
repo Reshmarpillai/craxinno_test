@@ -26,7 +26,7 @@ export const UserInfoView = ({ id }) => {
   }
   return (
     <div>
-      <h2>Personal Information</h2>
+      <h2 className="primary-heading ">Personal Information</h2>
       <p>
         Name: {userInfo.title} {userInfo.name}
       </p>

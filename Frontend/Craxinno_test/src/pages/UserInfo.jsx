@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { saveUserInfo } from "../redux/action/userInfoAction";
-import { UserInfoView } from "../components/UserInfoView";
-import { Routes, Route } from "react-router-dom";
 import { toast } from "react-toastify";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const UserInfo = () => {
   const [formData, setFormData] = useState({
     title: "mr",
     name: "",
-    dateOfBirth: "",
+    dateOfBirth: null,
     address: "",
     livingStatus: "",
     aboutYou: "",
@@ -35,15 +35,18 @@ export const UserInfo = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="flex flex-col space-y-4 max-w-lg mx-auto">
       <form onSubmit={handleSubmit}>
         <h1 className="primary-heading">Personal Information</h1>
+        <h5 className="sub-heading">
+          Please answer questions accuratily as possible
+        </h5>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <select
             name="title"
             value={formData.title}
             onChange={(e) => handleChange(e.target.name, e.target.value)}
-            className="dropdown"
+            className="dropdown input"
             style={{ padding: "5px" }}
           >
             <option value="mr">Mr.</option>
@@ -56,12 +59,13 @@ export const UserInfo = () => {
             placeholder="Full Name as per your passport"
           />
         </div>
-        <InputField
-          name="dateOfBirth"
-          value={formData.dateOfBirth}
-          onChange={(value) => handleChange("dateOfBirth", value)}
-          placeholder="Date of Birth"
+        <DatePicker
+          selected={formData.dateOfBirth}
+          onChange={(date) => handleChange("dateOfBirth", date)}
+          dateFormat="dd/MM/yyyy"
+          placeholderText="Date of Birth"
         />
+
         <InputField
           name="address"
           value={formData.address}
@@ -96,7 +100,6 @@ export const UserInfo = () => {
           </a>
         </div>
       )}
-
     </div>
   );
 };

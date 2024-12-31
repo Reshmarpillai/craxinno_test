@@ -15,7 +15,9 @@ export const Dropdownmenu = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className={`dropdown ${error ? "dropdown-error" : ""}`}
+        className={`bg-white border-2 border-blue-500 p-2 rounded-md dropdown ${
+          error ? "dropdown-error" : ""
+        }`}
         style={{ padding: "5px" }}
       >
         <option value="" disabled>

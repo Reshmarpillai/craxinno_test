@@ -28,8 +28,8 @@ export const FinancialInfoView = ({ id }) => {
     return <div>Loading financial information...</div>;
   }
   return (
-    <div>
-      <h2>Financial Information</h2>
+    <div className="mt-9">
+      <h2 className="primary-heading">Financial Information</h2>
       <p>Employment Status: {financialInfo.employmentStatus}</p>
       <p>Additional Savings: {financialInfo.additionalSavings}</p>
     </div>

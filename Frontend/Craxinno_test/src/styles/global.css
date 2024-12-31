@@ -19,10 +19,13 @@ p {
   @apply bg-white border-2 border-blue-500 p-2 rounded-md;
 }
 .primary-heading {
-  @apply text-3xl font-bold text-gray-600 text-center;
+  @apply text-3xl font-bold text-gray-700 text-center;
 }
 .sub-heading {
-  @apply text-gray-500 text-center;
+  @apply text-gray-600 text-center;
+}
+.sub-topic{
+  @apply text-xl text-gray-500;
 }
 .button {
   @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
