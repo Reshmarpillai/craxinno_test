@@ -93,13 +93,6 @@ export const UserInfo = () => {
           </button>
         </div>
       </form>
-      {userInfoLink && (
-        <div>
-          <a href={userInfoLink} target="_blank" rel="noopener noreferrer">
-            View personal Information
-          </a>
-        </div>
-      )}
     </div>
   );
 };
